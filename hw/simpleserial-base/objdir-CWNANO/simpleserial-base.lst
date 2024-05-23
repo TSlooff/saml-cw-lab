@@ -1,0 +1,566 @@
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"simpleserial-base.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "simpleserial-base.c"
+  18              		.section	.text.get_key,"ax",%progbits
+  19              		.align	1
+  20              		.global	get_key
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	get_key:
+  26              	.LVL0:
+  27              	.LFB2:
+   1:simpleserial-base.c **** /*
+   2:simpleserial-base.c ****     This file is part of the ChipWhisperer Example Targets
+   3:simpleserial-base.c ****     Copyright (C) 2012-2017 NewAE Technology Inc.
+   4:simpleserial-base.c **** 
+   5:simpleserial-base.c ****     This program is free software: you can redistribute it and/or modify
+   6:simpleserial-base.c ****     it under the terms of the GNU General Public License as published by
+   7:simpleserial-base.c ****     the Free Software Foundation, either version 3 of the License, or
+   8:simpleserial-base.c ****     (at your option) any later version.
+   9:simpleserial-base.c **** 
+  10:simpleserial-base.c ****     This program is distributed in the hope that it will be useful,
+  11:simpleserial-base.c ****     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  12:simpleserial-base.c ****     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  13:simpleserial-base.c ****     GNU General Public License for more details.
+  14:simpleserial-base.c **** 
+  15:simpleserial-base.c ****     You should have received a copy of the GNU General Public License
+  16:simpleserial-base.c ****     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  17:simpleserial-base.c **** */
+  18:simpleserial-base.c **** 
+  19:simpleserial-base.c **** #include "hal.h"
+  20:simpleserial-base.c **** #include <stdint.h>
+  21:simpleserial-base.c **** #include <stdlib.h>
+  22:simpleserial-base.c **** 
+  23:simpleserial-base.c **** #include "simpleserial.h"
+  24:simpleserial-base.c **** 
+  25:simpleserial-base.c **** uint8_t get_key(uint8_t* k, uint8_t len)
+  26:simpleserial-base.c **** {
+  28              		.loc 1 26 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  27:simpleserial-base.c **** 	// Load key here
+  28:simpleserial-base.c **** 	return 0x00;
+  33              		.loc 1 28 2 view .LVU1
+  29:simpleserial-base.c **** }
+  34              		.loc 1 29 1 is_stmt 0 view .LVU2
+  35 0000 0020     		movs	r0, #0
+  36              	.LVL1:
+  37              		.loc 1 29 1 view .LVU3
+  38              		@ sp needed
+  39 0002 7047     		bx	lr
+  40              		.cfi_endproc
+  41              	.LFE2:
+  43              		.section	.text.get_pt,"ax",%progbits
+  44              		.align	1
+  45              		.global	get_pt
+  46              		.syntax unified
+  47              		.code	16
+  48              		.thumb_func
+  50              	get_pt:
+  51              	.LVL2:
+  52              	.LFB3:
+  30:simpleserial-base.c **** 
+  31:simpleserial-base.c **** uint8_t get_pt(uint8_t* pt, uint8_t len)
+  32:simpleserial-base.c **** {
+  53              		.loc 1 32 1 is_stmt 1 view -0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  33:simpleserial-base.c **** 	/**********************************
+  34:simpleserial-base.c **** 	* Start user-specific code here. */
+  35:simpleserial-base.c **** 	trigger_high();
+  57              		.loc 1 35 2 view .LVU5
+  32:simpleserial-base.c **** 	/**********************************
+  58              		.loc 1 32 1 is_stmt 0 view .LVU6
+  59 0000 10B5     		push	{r4, lr}
+  60              	.LCFI0:
+  61              		.cfi_def_cfa_offset 8
+  62              		.cfi_offset 4, -8
+  63              		.cfi_offset 14, -4
+  32:simpleserial-base.c **** 	/**********************************
+  64              		.loc 1 32 1 view .LVU7
+  65 0002 0400     		movs	r4, r0
+  36:simpleserial-base.c **** 
+  37:simpleserial-base.c **** 	//16 hex bytes held in 'pt' were sent
+  38:simpleserial-base.c **** 	//from the computer. Store your response
+  39:simpleserial-base.c **** 	//back into 'pt', which will send 16 bytes
+  40:simpleserial-base.c **** 	//back to computer. Can ignore of course if
+  41:simpleserial-base.c **** 	//not needed
+  42:simpleserial-base.c **** 
+  43:simpleserial-base.c **** 	trigger_low();
+  44:simpleserial-base.c **** 	/* End user-specific code here. *
+  45:simpleserial-base.c **** 	********************************/
+  46:simpleserial-base.c **** 	simpleserial_put('r', 16, pt);
+  47:simpleserial-base.c **** 	return 0x00;
+  48:simpleserial-base.c **** }
+  66              		.loc 1 48 1 view .LVU8
+  67              		@ sp needed
+  35:simpleserial-base.c **** 
+  68              		.loc 1 35 2 view .LVU9
+  69 0004 FFF7FEFF 		bl	trigger_high
+  70              	.LVL3:
+  43:simpleserial-base.c **** 	/* End user-specific code here. *
+  71              		.loc 1 43 2 is_stmt 1 view .LVU10
+  72 0008 FFF7FEFF 		bl	trigger_low
+  73              	.LVL4:
+  46:simpleserial-base.c **** 	return 0x00;
+  74              		.loc 1 46 2 view .LVU11
+  75 000c 2200     		movs	r2, r4
+  76 000e 1021     		movs	r1, #16
+  77 0010 7220     		movs	r0, #114
+  78 0012 FFF7FEFF 		bl	simpleserial_put
+  79              	.LVL5:
+  47:simpleserial-base.c **** }
+  80              		.loc 1 47 2 view .LVU12
+  81              		.loc 1 48 1 is_stmt 0 view .LVU13
+  82 0016 0020     		movs	r0, #0
+  83              	.LVL6:
+  84              		.loc 1 48 1 view .LVU14
+  85 0018 10BD     		pop	{r4, pc}
+  86              		.cfi_endproc
+  87              	.LFE3:
+  89              		.section	.text.reset,"ax",%progbits
+  90              		.align	1
+  91              		.global	reset
+  92              		.syntax unified
+  93              		.code	16
+  94              		.thumb_func
+  96              	reset:
+  97              	.LFB9:
+  98              		.cfi_startproc
+  49:simpleserial-base.c **** 
+  50:simpleserial-base.c **** uint8_t reset(uint8_t* x, uint8_t len)
+  99              		.loc 1 50 9 is_stmt 1 view -0
+ 100              		@ args = 0, pretend = 0, frame = 0
+ 101              		@ frame_needed = 0, uses_anonymous_args = 0
+ 102              		@ link register save eliminated.
+ 103 0000 0020     		movs	r0, #0
+ 104              		@ sp needed
+ 105 0002 7047     		bx	lr
+ 106              		.cfi_endproc
+ 107              	.LFE9:
+ 109              		.section	.text.led_ok,"ax",%progbits
+ 110              		.align	1
+ 111              		.weak	led_ok
+ 112              		.syntax unified
+ 113              		.code	16
+ 114              		.thumb_func
+ 116              	led_ok:
+ 117              	.LFB7:
+ 118              		.cfi_startproc
+ 119              		.file 2 ".././hal/hal.h"
+   1:.././hal/hal.h **** /*
+   2:.././hal/hal.h ****     This file is part of the ChipWhisperer Example Targets
+   3:.././hal/hal.h ****     Copyright (C) 2012-2015 NewAE Technology Inc.
+   4:.././hal/hal.h **** 
+   5:.././hal/hal.h ****     This program is free software: you can redistribute it and/or modify
+   6:.././hal/hal.h ****     it under the terms of the GNU General Public License as published by
+   7:.././hal/hal.h ****     the Free Software Foundation, either version 3 of the License, or
+   8:.././hal/hal.h ****     (at your option) any later version.
+   9:.././hal/hal.h **** 
+  10:.././hal/hal.h ****     This program is distributed in the hope that it will be useful,
+  11:.././hal/hal.h ****     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  12:.././hal/hal.h ****     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  13:.././hal/hal.h ****     GNU General Public License for more details.
+  14:.././hal/hal.h **** 
+  15:.././hal/hal.h ****     You should have received a copy of the GNU General Public License
+  16:.././hal/hal.h ****     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  17:.././hal/hal.h **** */
+  18:.././hal/hal.h **** 
+  19:.././hal/hal.h **** #ifndef HAL_H_
+  20:.././hal/hal.h **** #define HAL_H_
+  21:.././hal/hal.h **** 
+  22:.././hal/hal.h **** #include <stdint.h>
+  23:.././hal/hal.h **** 
+  24:.././hal/hal.h **** void platform_init(void);
+  25:.././hal/hal.h **** 
+  26:.././hal/hal.h **** //PLATFORM Define Types
+  27:.././hal/hal.h **** #define CW301_AVR      1
+  28:.././hal/hal.h **** #define CW301_XMEGA    2
+  29:.././hal/hal.h **** #define CW303          3
+  30:.././hal/hal.h **** #define CW304          4
+  31:.././hal/hal.h **** #define CW308_MEGARF   8
+  32:.././hal/hal.h **** #define CW308_PIC24FJ  10
+  33:.././hal/hal.h **** #define CW308_SAM4L    11
+  34:.././hal/hal.h **** #define CW308_SI4010   12
+  35:.././hal/hal.h **** #define CW308_MPC5748G 13
+  36:.././hal/hal.h **** #define CW308_STM32F0  14
+  37:.././hal/hal.h **** #define CW308_STM32F1  15
+  38:.././hal/hal.h **** #define CW308_STM32F2  16
+  39:.././hal/hal.h **** #define CW308_STM32F3  17
+  40:.././hal/hal.h **** #define CW308_STM32F4  18
+  41:.././hal/hal.h **** #define CW308_CC2538   19
+  42:.././hal/hal.h **** #define CW308_K24F     20
+  43:.././hal/hal.h **** #define CW308_NRF52840 21
+  44:.././hal/hal.h **** #define CW308_AURIX    22
+  45:.././hal/hal.h **** #define CW308_SAML11   23
+  46:.././hal/hal.h **** #define CW308_EFM32TG11B 24
+  47:.././hal/hal.h **** #define CW308_K82F     25
+  48:.././hal/hal.h **** #define CW308_LPC55S6X 26
+  49:.././hal/hal.h **** #define CW308_PSOC62   27
+  50:.././hal/hal.h **** #define CW308_IMXRT1062 28
+  51:.././hal/hal.h **** #define CW308_FE310    29
+  52:.././hal/hal.h **** #define CW308_EFR32MG21A  30
+  53:.././hal/hal.h **** #define CW308_EFM32GG11  31
+  54:.././hal/hal.h **** #define CW308_STM32L5  32
+  55:.././hal/hal.h **** #define CW308_STM32L4  33
+  56:.././hal/hal.h **** #define CW308_RX65N  34
+  57:.././hal/hal.h **** #define CW308_MPC5676R 35
+  58:.././hal/hal.h **** #define CW308_NEORV32  36
+  59:.././hal/hal.h **** #define CW305_IBEX  37
+  60:.././hal/hal.h **** 
+  61:.././hal/hal.h **** //HAL_TYPE Define Types
+  62:.././hal/hal.h **** #define HAL_avr      1
+  63:.././hal/hal.h **** #define HAL_xmega    2
+  64:.././hal/hal.h **** #define HAL_pic24f   3
+  65:.././hal/hal.h **** #define HAL_sam4l    4
+  66:.././hal/hal.h **** #define HAL_stm32f0  5
+  67:.././hal/hal.h **** #define HAL_stm32f1  6
+  68:.././hal/hal.h **** #define HAL_stm32f2  7
+  69:.././hal/hal.h **** #define HAL_stm32f3  8
+  70:.././hal/hal.h **** #define HAL_stm32f4  9
+  71:.././hal/hal.h **** #define HAL_cc2538   10
+  72:.././hal/hal.h **** #define HAL_k24f     11
+  73:.././hal/hal.h **** #define HAL_nrf52840 12
+  74:.././hal/hal.h **** #define HAL_stm32f0_nano 13
+  75:.././hal/hal.h **** #define HAL_aurix    14
+  76:.././hal/hal.h **** #define HAL_saml11   15
+  77:.././hal/hal.h **** #define HAL_efm32tg11b 16
+  78:.././hal/hal.h **** #define HAL_k82f     17
+  79:.././hal/hal.h **** #define HAL_lpc55s6x 18
+  80:.././hal/hal.h **** #define HAL_psoc62   19
+  81:.././hal/hal.h **** #define HAL_imxrt1062 20
+  82:.././hal/hal.h **** #define HAL_fe310    21
+  83:.././hal/hal.h **** #define HAL_efr32mg21a 22
+  84:.././hal/hal.h **** #define HAL_efm32gg11 23
+  85:.././hal/hal.h **** #define HAL_stm32l5 24
+  86:.././hal/hal.h **** #define HAL_stm32l4 25
+  87:.././hal/hal.h **** #define HAL_rx65n 26
+  88:.././hal/hal.h **** #define HAL_mpc5676r 27
+  89:.././hal/hal.h **** #define HAL_neorv32  28
+  90:.././hal/hal.h **** #define HAL_sam4s  29
+  91:.././hal/hal.h **** #define HAL_ibex  30
+  92:.././hal/hal.h **** 
+  93:.././hal/hal.h **** #if HAL_TYPE == HAL_avr
+  94:.././hal/hal.h ****     #include <avr/io.h>
+  95:.././hal/hal.h ****     #include <util/delay.h>
+  96:.././hal/hal.h ****     #include "avr/avr_hal.h"
+  97:.././hal/hal.h **** #elif HAL_TYPE == HAL_xmega
+  98:.././hal/hal.h ****     #include <avr/io.h>
+  99:.././hal/hal.h ****     #include <util/delay.h>
+ 100:.././hal/hal.h ****     #include "xmega/xmega_hal.h"
+ 101:.././hal/hal.h ****     #include "xmega/avr_compiler.h"
+ 102:.././hal/hal.h **** #elif HAL_TYPE == HAL_pic24f
+ 103:.././hal/hal.h ****     #include <xc.h>
+ 104:.././hal/hal.h ****     #include "pic24f/pic24f_hal.h"
+ 105:.././hal/hal.h ****     #include "pic24f/uart.h"
+ 106:.././hal/hal.h **** #elif HAL_TYPE == HAL_sam4l
+ 107:.././hal/hal.h ****     #include "sam4l/sam4l_hal.h"
+ 108:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32f0
+ 109:.././hal/hal.h **** 	#include "stm32f0/stm32f0_hal.h"
+ 110:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32f1
+ 111:.././hal/hal.h **** 	#include "stm32f1/stm32f1_hal.h"
+ 112:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32f2
+ 113:.././hal/hal.h **** 	#include "stm32f2/stm32f2_hal.h"
+ 114:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32f3
+ 115:.././hal/hal.h **** 	#include "stm32f3/stm32f3_hal.h"
+ 116:.././hal/hal.h **** 	#ifdef SECCAN
+ 117:.././hal/hal.h **** 		#include "stm32f3/stm32f3_hal_seccan.h"
+ 118:.././hal/hal.h **** 	#endif
+ 119:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32f4
+ 120:.././hal/hal.h **** 	#include "stm32f4/stm32f4_hal.h"
+ 121:.././hal/hal.h **** #elif HAL_TYPE == HAL_cc2538
+ 122:.././hal/hal.h **** 	#include "cc2538/cc2538_hal.h"
+ 123:.././hal/hal.h **** #elif HAL_TYPE == HAL_k24f
+ 124:.././hal/hal.h ****     #include "k24f/k24f_hal.h"
+ 125:.././hal/hal.h **** #elif HAL_TYPE == HAL_k82f
+ 126:.././hal/hal.h **** #include "k82f/k82f_hal.h"
+ 127:.././hal/hal.h **** #elif HAL_TYPE == HAL_nrf52840
+ 128:.././hal/hal.h ****     #include "nrf52840/nrf52840_hal.h"   
+ 129:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32f0_nano
+ 130:.././hal/hal.h ****     #include "stm32f0/stm32f0_hal.h" 
+ 131:.././hal/hal.h ****     void led_error(unsigned int status);
+ 132:.././hal/hal.h ****     void led_ok(unsigned int status);
+ 133:.././hal/hal.h **** #elif HAL_TYPE == HAL_aurix
+ 134:.././hal/hal.h ****     #include "aurix/aurix_hal.h"
+ 135:.././hal/hal.h **** #elif HAL_TYPE == HAL_saml11
+ 136:.././hal/hal.h ****      #include "saml11/saml11_hal.h"
+ 137:.././hal/hal.h **** #elif HAL_TYPE == HAL_efm32tg11b
+ 138:.././hal/hal.h ****      #include "efm32tg11b/efm32tg11b_hal.h"
+ 139:.././hal/hal.h **** #elif HAL_TYPE == HAL_lpc55s6x
+ 140:.././hal/hal.h ****      #include "lpc55s6x/lpc55s6x_hal.h"
+ 141:.././hal/hal.h **** #elif HAL_TYPE == HAL_psoc62
+ 142:.././hal/hal.h ****     #include "psoc62/psoc62_hal.h"
+ 143:.././hal/hal.h **** #elif HAL_TYPE == HAL_imxrt1062
+ 144:.././hal/hal.h ****     #include "imxrt1062/imxrt1062_hal.h"
+ 145:.././hal/hal.h **** #elif HAL_TYPE == HAL_fe310
+ 146:.././hal/hal.h ****     #include "fe310/fe310_hal.h"
+ 147:.././hal/hal.h **** #elif HAL_TYPE == HAL_efr32mg21a
+ 148:.././hal/hal.h ****     #include "efr32mg21a/efr32mg21a_hal.h"
+ 149:.././hal/hal.h **** #elif HAL_TYPE == HAL_efm32gg11
+ 150:.././hal/hal.h ****     #include "efm32gg11/efm32gg11_hal.h"
+ 151:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32l5
+ 152:.././hal/hal.h ****     #include "stm32l5/stm32l5_hal.h"
+ 153:.././hal/hal.h **** #elif HAL_TYPE == HAL_stm32l4
+ 154:.././hal/hal.h ****     #include "stm32l4/stm32l4_hal.h"
+ 155:.././hal/hal.h **** #elif HAL_TYPE == HAL_rx65n
+ 156:.././hal/hal.h ****     #include "rx65n/rx65n_hal.h"
+ 157:.././hal/hal.h **** #elif HAL_TYPE == HAL_mpc5676r
+ 158:.././hal/hal.h ****     #include "mpc5676r/MPC5676R_hal.h"
+ 159:.././hal/hal.h **** #elif HAL_TYPE == HAL_neorv32
+ 160:.././hal/hal.h ****     #include "neorv32/neorv32_hal.h"
+ 161:.././hal/hal.h **** #elif HAL_TYPE == HAL_sam4s
+ 162:.././hal/hal.h ****     #include "sam4s/sam4s_hal.h"
+ 163:.././hal/hal.h **** #elif HAL_TYPE == HAL_ibex
+ 164:.././hal/hal.h ****     #include "ibex/ibex_hal.h"
+ 165:.././hal/hal.h **** #else
+ 166:.././hal/hal.h ****     #error "Unsupported HAL Type"
+ 167:.././hal/hal.h **** #endif
+ 168:.././hal/hal.h **** 
+ 169:.././hal/hal.h **** #if PLATFORM == CW308_MEGARF
+ 170:.././hal/hal.h ****     #undef trigger_setup
+ 171:.././hal/hal.h ****     #undef trigger_high
+ 172:.././hal/hal.h ****     #undef trigger_low
+ 173:.././hal/hal.h ****     #define trigger_setup() DDRD |= 0x02
+ 174:.././hal/hal.h ****     #define trigger_high()  PORTD |= 0x02
+ 175:.././hal/hal.h ****     #define trigger_low()   PORTD &= ~(0x02)
+ 176:.././hal/hal.h ****     
+ 177:.././hal/hal.h ****     #define HW_AES128_Init();      AES_CTRL = 0x00;
+ 178:.././hal/hal.h **** 
+ 179:.././hal/hal.h ****     #define HW_AES128_LoadKey(key);  for (uint8_t i = 0; i < 16; i++){ \
+ 180:.././hal/hal.h ****                                      AES_KEY = *(key+i); \
+ 181:.././hal/hal.h ****                                   }
+ 182:.././hal/hal.h **** 
+ 183:.././hal/hal.h ****     #define HW_AES128_Enc(pt);  for (uint8_t i = 0; i < 16; i++){ \
+ 184:.././hal/hal.h ****                                     AES_STATE = *(pt+i); \
+ 185:.././hal/hal.h ****                                 } \
+ 186:.././hal/hal.h ****                                   \
+ 187:.././hal/hal.h ****                                 AES_CTRL |= 1<<AES_REQUEST; \
+ 188:.././hal/hal.h ****                                   \
+ 189:.././hal/hal.h ****                                 /*Wait for done  */ \
+ 190:.././hal/hal.h ****                                 while ((AES_STATUS & (1<<AES_DONE)) == 0){ \
+ 191:.././hal/hal.h ****                                     ; \
+ 192:.././hal/hal.h ****                                 } \
+ 193:.././hal/hal.h ****                                   \
+ 194:.././hal/hal.h ****                                 for (uint8_t i = 0; i < 16; i++){ \
+ 195:.././hal/hal.h ****                                     *(pt+i) = AES_STATE; \
+ 196:.././hal/hal.h ****                                 }
+ 197:.././hal/hal.h ****     
+ 198:.././hal/hal.h **** #endif
+ 199:.././hal/hal.h **** 
+ 200:.././hal/hal.h **** __attribute__((weak)) void led_ok(unsigned int status)
+ 120              		.loc 2 200 28 view -0
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		@ link register save eliminated.
+ 124              		@ sp needed
+ 125 0000 7047     		bx	lr
+ 126              		.cfi_endproc
+ 127              	.LFE7:
+ 129              		.section	.text.led_error,"ax",%progbits
+ 130              		.align	1
+ 131              		.weak	led_error
+ 132              		.syntax unified
+ 133              		.code	16
+ 134              		.thumb_func
+ 136              	led_error:
+ 137              	.LVL7:
+ 138              	.LFB1:
+ 201:.././hal/hal.h **** {
+ 202:.././hal/hal.h **** }
+ 203:.././hal/hal.h **** 
+ 204:.././hal/hal.h **** __attribute__((weak)) void led_error(unsigned int status)
+ 205:.././hal/hal.h **** {
+ 139              		.loc 2 205 1 view -0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143              		@ link register save eliminated.
+ 206:.././hal/hal.h **** }
+ 144              		.loc 2 206 1 view .LVU18
+ 145              		@ sp needed
+ 146 0000 7047     		bx	lr
+ 147              		.cfi_endproc
+ 148              	.LFE1:
+ 150              		.section	.text.startup.main,"ax",%progbits
+ 151              		.align	1
+ 152              		.global	main
+ 153              		.syntax unified
+ 154              		.code	16
+ 155              		.thumb_func
+ 157              	main:
+ 158              	.LFB5:
+  51:simpleserial-base.c **** {
+  52:simpleserial-base.c **** 	// Reset key here if needed
+  53:simpleserial-base.c **** 	return 0x00;
+  54:simpleserial-base.c **** }
+  55:simpleserial-base.c **** 
+  56:simpleserial-base.c **** #if SS_VER == SS_VER_2_1
+  57:simpleserial-base.c **** uint8_t aes(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
+  58:simpleserial-base.c **** {
+  59:simpleserial-base.c ****     uint8_t req_len = 0;
+  60:simpleserial-base.c ****     uint8_t err = 0;
+  61:simpleserial-base.c **** 
+  62:simpleserial-base.c ****     if (scmd & 0x02) {
+  63:simpleserial-base.c ****         req_len += 16;
+  64:simpleserial-base.c ****         if (req_len > len) {
+  65:simpleserial-base.c ****             return SS_ERR_LEN;
+  66:simpleserial-base.c ****         }
+  67:simpleserial-base.c ****         err = get_key(buf + req_len - 16, 16);
+  68:simpleserial-base.c ****         if (err)
+  69:simpleserial-base.c ****             return err;
+  70:simpleserial-base.c ****     }
+  71:simpleserial-base.c ****     if (scmd & 0x01) {
+  72:simpleserial-base.c ****         req_len += 16;
+  73:simpleserial-base.c ****         if (req_len > len) {
+  74:simpleserial-base.c ****             return SS_ERR_LEN;
+  75:simpleserial-base.c ****         }
+  76:simpleserial-base.c ****         err = get_pt(buf + req_len - 16, 16);
+  77:simpleserial-base.c ****         if (err)
+  78:simpleserial-base.c ****             return err;
+  79:simpleserial-base.c ****     }
+  80:simpleserial-base.c **** 
+  81:simpleserial-base.c ****     if (len != req_len) {
+  82:simpleserial-base.c ****         return SS_ERR_LEN;
+  83:simpleserial-base.c ****     }
+  84:simpleserial-base.c **** 
+  85:simpleserial-base.c ****     return 0x00;
+  86:simpleserial-base.c **** 
+  87:simpleserial-base.c **** }
+  88:simpleserial-base.c **** #endif
+  89:simpleserial-base.c **** 
+  90:simpleserial-base.c **** int main(void)
+  91:simpleserial-base.c **** {
+ 159              		.loc 1 91 1 view -0
+ 160              		.cfi_startproc
+ 161              		@ Volatile: function does not return.
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+  92:simpleserial-base.c ****     platform_init();
+ 164              		.loc 1 92 5 view .LVU20
+  91:simpleserial-base.c ****     platform_init();
+ 165              		.loc 1 91 1 is_stmt 0 view .LVU21
+ 166 0000 10B5     		push	{r4, lr}
+ 167              	.LCFI1:
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 4, -8
+ 170              		.cfi_offset 14, -4
+ 171              		.loc 1 92 5 view .LVU22
+ 172 0002 FFF7FEFF 		bl	platform_init
+ 173              	.LVL8:
+  93:simpleserial-base.c **** 	init_uart();
+ 174              		.loc 1 93 2 is_stmt 1 view .LVU23
+ 175 0006 FFF7FEFF 		bl	init_uart
+ 176              	.LVL9:
+  94:simpleserial-base.c **** 	trigger_setup();
+ 177              		.loc 1 94 2 view .LVU24
+ 178 000a FFF7FEFF 		bl	trigger_setup
+ 179              	.LVL10:
+  95:simpleserial-base.c **** 
+  96:simpleserial-base.c ****  	/* Uncomment this to get a HELLO message for debug */
+  97:simpleserial-base.c **** 	/*
+  98:simpleserial-base.c **** 	putch('h');
+  99:simpleserial-base.c **** 	putch('e');
+ 100:simpleserial-base.c **** 	putch('l');
+ 101:simpleserial-base.c **** 	putch('l');
+ 102:simpleserial-base.c **** 	putch('o');
+ 103:simpleserial-base.c **** 	putch('\n');
+ 104:simpleserial-base.c **** 	*/
+ 105:simpleserial-base.c **** 
+ 106:simpleserial-base.c **** 	simpleserial_init();
+ 180              		.loc 1 106 2 view .LVU25
+ 181 000e FFF7FEFF 		bl	simpleserial_init
+ 182              	.LVL11:
+ 107:simpleserial-base.c **** #if SS_VER != SS_VER_2_1
+ 108:simpleserial-base.c **** 	simpleserial_addcmd('p', 16, get_pt);
+ 183              		.loc 1 108 2 view .LVU26
+ 184 0012 1021     		movs	r1, #16
+ 185 0014 084A     		ldr	r2, .L8
+ 186 0016 7020     		movs	r0, #112
+ 187 0018 FFF7FEFF 		bl	simpleserial_addcmd
+ 188              	.LVL12:
+ 109:simpleserial-base.c **** 	simpleserial_addcmd('k', 16, get_key);
+ 189              		.loc 1 109 2 view .LVU27
+ 190 001c 1021     		movs	r1, #16
+ 191 001e 074A     		ldr	r2, .L8+4
+ 192 0020 6B20     		movs	r0, #107
+ 193 0022 FFF7FEFF 		bl	simpleserial_addcmd
+ 194              	.LVL13:
+ 110:simpleserial-base.c **** 	simpleserial_addcmd('x', 0, reset);
+ 195              		.loc 1 110 2 view .LVU28
+ 196 0026 0021     		movs	r1, #0
+ 197 0028 7820     		movs	r0, #120
+ 198 002a 054A     		ldr	r2, .L8+8
+ 199 002c FFF7FEFF 		bl	simpleserial_addcmd
+ 200              	.LVL14:
+ 201              	.L7:
+ 111:simpleserial-base.c **** #else
+ 112:simpleserial-base.c ****     simpleserial_addcmd(0x01, 16, aes);
+ 113:simpleserial-base.c **** 
+ 114:simpleserial-base.c **** #endif
+ 115:simpleserial-base.c **** 	while(1)
+ 202              		.loc 1 115 2 view .LVU29
+ 116:simpleserial-base.c **** 		simpleserial_get();
+ 203              		.loc 1 116 3 discriminator 1 view .LVU30
+ 204 0030 FFF7FEFF 		bl	simpleserial_get
+ 205              	.LVL15:
+ 115:simpleserial-base.c **** 		simpleserial_get();
+ 206              		.loc 1 115 7 view .LVU31
+ 207 0034 FCE7     		b	.L7
+ 208              	.L9:
+ 209 0036 C046     		.align	2
+ 210              	.L8:
+ 211 0038 00000000 		.word	get_pt
+ 212 003c 00000000 		.word	get_key
+ 213 0040 00000000 		.word	reset
+ 214              		.cfi_endproc
+ 215              	.LFE5:
+ 217              		.text
+ 218              	.Letext0:
+ 219              		.file 3 "/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/arm-none-eabi/include/machine/_defa
+ 220              		.file 4 "/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/arm-none-eabi/include/sys/_stdint.h
+ 221              		.file 5 ".././simpleserial/simpleserial.h"
+ 222              		.file 6 ".././hal/stm32f0/stm32f0_hal.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 simpleserial-base.c
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:19     .text.get_key:00000000 $t
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:25     .text.get_key:00000000 get_key
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:44     .text.get_pt:00000000 $t
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:50     .text.get_pt:00000000 get_pt
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:90     .text.reset:00000000 $t
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:96     .text.reset:00000000 reset
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:110    .text.led_ok:00000000 $t
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:116    .text.led_ok:00000000 led_ok
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:130    .text.led_error:00000000 $t
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:136    .text.led_error:00000000 led_error
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:151    .text.startup.main:00000000 $t
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:157    .text.startup.main:00000000 main
+/var/folders/9f/5d0dy5x17vxf84ddjfcw5h2r0000gp/T//cctfWhvr.s:211    .text.startup.main:00000038 $d
+
+UNDEFINED SYMBOLS
+trigger_high
+trigger_low
+simpleserial_put
+platform_init
+init_uart
+trigger_setup
+simpleserial_init
+simpleserial_addcmd
+simpleserial_get
